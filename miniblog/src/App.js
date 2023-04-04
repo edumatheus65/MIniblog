@@ -1,10 +1,15 @@
 import React, {} from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import './App.css';
 
 const App = () => { 
     return (
       <div className="App">
-        <h1>MiniBlog</h1>
+        <BrowserRouter>
+          <div className="container">
+            <Routes></Routes>
+          </div>
+        </BrowserRouter>
       </div>
     );  
 }
