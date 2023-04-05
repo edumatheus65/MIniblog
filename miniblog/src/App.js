@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { onAuthStateChanged } from 'firebase/auth';
 import { useAuthentication } from './hooks/useAuthentication';
@@ -16,10 +16,12 @@ import Register from './pages/Register/Register';
 // components
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import CreatePost from './pages/CreatePost/CreatePost';
+import Dashboard from './pages/Dashboard/Dashboard';
 
 const App = () => {
   const [user, setUser] = useState(undefined)
-  const {auth} = useAuthentication()
+  const { auth } = useAuthentication()
 
   const loadingUser = user === undefined
   useEffect(() => {
@@ -27,7 +29,7 @@ const App = () => {
       setUser(user)
     })
   }, [auth])
-  if(loadingUser) {
+  if (loadingUser) {
     return <p>Carregando...</p>
   }
 
@@ -42,6 +44,8 @@ const App = () => {
               <Route path="/about" element={<About />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
+              <Route path="/posts/create" element={<CreatePost />} />
+              <Route path="/dashboard" element={<Dashboard />} />
             </Routes>
           </div>
           <Footer />
