@@ -18,7 +18,7 @@ const Login = () => {
             email,
             password
         };       
-        const res = await createUser(user)
+        const res = await login(user)
         console.log(res)
     }
 
@@ -32,10 +32,10 @@ const Login = () => {
             <h1>Entrar</h1>
             <p>Logue-se para desfrutar do melhor do sistema</p>
             <form onSubmit={handleSubmit}>
-                <label>
+                {/* <label>
                     <span>Nome:</span>
                     <input type="text" name='displayName' required placeholder='Nome do usuário' value="" onChange={(e) => setDisplayName(e.target.value)} />
-                </label>
+                </label> */}
                 <label>
                     <span>E-mail:</span>
                     <input type="email" name='email' required placeholder='Digite o email' value={email} onChange={(e) => setEmail(e.target.value)} />
