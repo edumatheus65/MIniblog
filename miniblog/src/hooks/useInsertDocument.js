@@ -1,8 +1,6 @@
 import { useState, useEffect, useReducer } from "react";
-import { db } from '..firebase/config'
-// Cada lugar que eu salvo um dado chama-se collection
-// addDoc fazer o insert do documento no bd, times tempo é o horário que ele foi criado
-import { collection, addD, Timestamp, addDoc } from "firebase/firestore";
+import { db } from '../firebase/config'
+import { collection, addDoc, Timestamp } from 'firebase/firestore';
 
 const initialState = {
     loading: null,
@@ -22,7 +20,7 @@ const insertReducer = (state, action) => {
             return state
     }
 }
-export const useInsetDocument = (docCollection) => {
+export const useInsertDocument = (docCollection) => {
     const [response, dispatch] = useReducer(insertReducer, initialState)
     // deal with memory leak
     const [cancelled, setCancelled] = useState(false)
@@ -55,6 +53,6 @@ export const useInsetDocument = (docCollection) => {
     }
     useEffect(() => {
         return () => setCancelled(true)
-    }, [])
+    })
     return {insertDocument, response}
 }
