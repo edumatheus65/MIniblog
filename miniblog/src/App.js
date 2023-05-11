@@ -1,35 +1,37 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { onAuthStateChanged } from 'firebase/auth';
-import { useAuthentication } from './hooks/useAuthentication';
-import './App.css';
+import React, { useState, useEffect } from "react"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { onAuthStateChanged } from "firebase/auth";
+
+// myHooks
+import { useAuthentication } from "./hooks/useAuthentication";
 
 // context
-import { AuthProvider } from './context/AuthContext';
-
-// pages
-import Home from './pages/Home/Home'
-import About from './pages/About/About'
-import Login from './pages/Login/Login';
-import Register from './pages/Register/Register';
+import { AuthProvider } from "./contexts/AuthContext";
 
 // components
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
-import CreatePost from './pages/CreatePost/CreatePost';
-import Dashboard from './pages/Dashboard/Dashboard';
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+
+// pages
+import Home from "./pages/Home/Home";
+import About from "./pages/About/About";
+import Login from "./pages/Login/Login"
+import Register from "./pages/Register/Register";
+import CreatePost from "./pages/CreatePost/CreatePost";
+import Dashboard from "./pages/Dashboard/Dashboard";
 
 const App = () => {
   const [user, setUser] = useState(undefined)
   const { auth } = useAuthentication()
+  const loadinguser = user === undefined
 
-  const loadingUser = user === undefined
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       setUser(user)
     })
   }, [auth])
-  if (loadingUser) {
+
+  if (loadinguser) {
     return <p>Carregando...</p>
   }
 

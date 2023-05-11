@@ -15,8 +15,9 @@
 
 .search_form input {
     margin-right: 10px;
-    width: 50%;
+    width: 50%;    
 }
+
 .noposts {
     text-align: center;
 }
