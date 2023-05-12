@@ -9,11 +9,16 @@ const Post = () => {
   const { document: post, loading } = useFetchDocument("posts", id)
 
   return (
-    <div>
+    <div className={styles.post_container}>
       {loading && <p>Carregando post...</p>}
         {post && (
           <>
             <h1>{post.title}</h1>
+            <img src={post.image} alt={post.title} />
+            <h3>Este post refere-se há:</h3>
+            {post.tags.map((tag) => (
+              <p key={tag}><span>#</span>{tag}</p>
+            ))}
 
           </>
         )}
