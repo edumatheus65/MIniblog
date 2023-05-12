@@ -21,19 +21,20 @@ export const useFetchDocument = (docCollection, id) => {
             try {
                 
                 const docRef = await doc(db, docCollection, id)
-                const docSnap = await getDoc(docRef.data())
+                const docSnap = await getDoc(docRef)
 
-                setDocument
+                setDocument(docSnap.data())
+                setLoading(false)
 
             } catch (error) {
-                
-            }
-
-            
+                console.log(error)
+                setError(error.message)
+                setLoading(false)
+            }            
         }
 
         loadDocument();
-    }, [docCollection, search, uid, cancelled]);
+    }, [docCollection, id, cancelled]);
 
     // console.log(document);
 
