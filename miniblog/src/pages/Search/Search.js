@@ -16,12 +16,12 @@ const Search = () => {
 
     return (
         <div className={styles.search_container}>
-            <h1>Resultados encontrados para: {search}</h1>
+            <h1>Resultados encontrados para: <span className={styles.edit_color_title}>{search}</span></h1>
             <div className="post-list">
                 {posts && posts.length === 0 && (
                     <>
                         <p>Não foram encontrados posts a partir da sua busca...</p>
-                        <Link to="about" className="btn btn-dark">
+                        <Link to="/about" className="btn btn-dark">
                             Voltar
                         </Link>
                     </>
